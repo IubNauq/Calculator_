@@ -11,3 +11,61 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(90deg, orange, yellowgreen);
+}
+
+.calculator-grid {
+  display: grid;
+  margin-top: 4rem;
+  grid-template-columns: repeat(4, 6rem);
+  grid-template-rows: minmax(6rem, auto) repeat(6, 6rem);
+  justify-content: center;
+}
+
+.calculator-grid > button{
+  font-size: 2rem;
+  background-color: rgba(255,255,255,0.5);
+  border: 2px solid white;
+}
+
+.calculator-grid > button:hover{
+  background-color: rgba(255,255,255,0.8);
+}
+
+.calculator-grid > button:active{
+  background-color: rgba(255,255,255,1);
+}
+
+
+.span-two {
+  grid-column: span 2;
+}
+
+.output {
+  grid-column: 1/-1;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /*word-wrap: break-word;*/
+  word-break: break-all;
+}
+
+.output .previous-operand {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.output .current-operand {
+  color: white;
+  font-size: 3.5rem;
+}
+
+
