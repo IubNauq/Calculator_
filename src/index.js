@@ -9,45 +9,33 @@ class Calculator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            result: "",
-            history: 0,
-            operated: false
+            result: ""
         }
     }
 
+
     handleClick = (e) => {
         this.setState(state => {
-            if (state.operated === true) {
-                state.operated = false;
-                state.result = "";
-            }
-
             return {result: state.result.concat(e.target.value)}
         })
     }
 
-    handleAdd = () => {
+    handleEqual = () => {
         this.setState(state => {
-            const num = Number(state.result)
-            const sum = state.history + num
-            return {
-                history: sum,
-                result: String(sum),
-                operated: true
-            }
+            return {result: String(eval(state.result))}
         })
     }
 
-    handleDel = () => {
-
-    }
-
     handleAC = () => {
-
+        this.setState(state => {
+            return {result: ""}
+        })
     }
 
-    handleEqual = () => {
-
+    handleDEL = () => {
+        this.setState(state => {
+            return {result: state.result.substring(0, state.result.length - 1)}
+        })
     }
 
     render() {
@@ -57,9 +45,13 @@ class Calculator extends React.Component {
                     <div className="previous-operand"></div>
                     <div className="current-operand">{this.state.result}</div>
                 </div>
-                <button className="span-two" onClick={this.handleAC}>AC</button>
-                <button onClick={this.handleDel}>DEL</button>
-                <button>%
+                <button className="span-two"
+                        onClick={this.handleAC}>AC
+                </button>
+                <button onClick={this.handleDEL}>DEL
+                </button>
+                <button onClick={this.handleClick}
+                        value={'/'}>/
                 </button>
                 <button onClick={this.handleClick}
                         value={'1'}>1
@@ -70,7 +62,9 @@ class Calculator extends React.Component {
                 <button onClick={this.handleClick}
                         value={'3'}>3
                 </button>
-                <button onClick={this.handleClick}>*</button>
+                <button onClick={this.handleClick}
+                        value={'*'}>*
+                </button>
                 <button onClick={this.handleClick}
                         value={'4'}>4
                 </button>
@@ -80,7 +74,9 @@ class Calculator extends React.Component {
                 <button onClick={this.handleClick}
                         value={'6'}>6
                 </button>
-                <button onClick={this.handleAdd}>+</button>
+                <button onClick={this.handleClick}
+                        value={'+'}>+
+                </button>
                 <button onClick={this.handleClick}
                         value={'7'}>7
                 </button>
@@ -90,10 +86,14 @@ class Calculator extends React.Component {
                 <button onClick={this.handleClick}
                         value={'9'}>9
                 </button>
-                <button onClick={this.handleClick}>-</button>
-                <button onClick={this.handleClick}>.</button>
+                <button onClick={this.handleClick}
+                        value={'-'}>-
+                </button>
+                <button onClick={this.handleClick} value={'.'}>.</button>
                 <button onClick={this.handleClick}>0</button>
-                <button className="span-two" onClick={this.handleEqual}>=</button>
+                <button className="span-two"
+                        onClick={this.handleEqual}>=
+                </button>
             </div>
         );
     }
