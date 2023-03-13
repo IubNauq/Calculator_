@@ -13,7 +13,6 @@ class Calculator extends React.Component {
         }
     }
 
-
     handleClick = (e) => {
         this.setState(state => {
             return {result: state.result.concat(e.target.value)}
@@ -22,7 +21,12 @@ class Calculator extends React.Component {
 
     handleEqual = () => {
         this.setState(state => {
-            return {result: String(eval(state.result))}
+            try {
+                return {result: String(eval(state.result))}
+            }catch (err){
+                return {result: "Error"}
+            }
+
         })
     }
 
